@@ -6,9 +6,13 @@ return {
     dependencies = {
       'nvim-treesitter/nvim-treesitter',
       'nvim-telescope/telescope.nvim', -- optional
-      'neovim/nvim-lspconfig', -- optional
+      'neovim/nvim-lspconfig',
+      'saghen/blink.cmp',
     },
     opts = {}, -- your configuration
+    config = function()
+      vim.api.nvim_create_autocmd('BufWrite', { command = ':TailwindSort' })
+    end,
   },
   {
     'laytan/tailwind-sorter.nvim',
