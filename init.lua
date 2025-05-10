@@ -89,7 +89,8 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 vim.keymap.set('n', '>', '0i  <Esc>0')
 
 -- Diagnostic keymaps
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+vim.keymap.set('n', '<leader>ql', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix [L]ist' })
+vim.keymap.set('n', '<leader>qf', vim.lsp.buf.code_action, { noremap = true, desc = '[Q]uick [F]ix' })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
@@ -404,6 +405,24 @@ require('lazy').setup({
       {
         'saghen/blink.cmp',
         enabled = true,
+        opts = {
+          signature = { enabled = true, window = { show_documentation = true, border = 'single', max_width = 100 } },
+          completion = {
+            documentation = {
+              auto_show = true,
+            },
+            menu = {
+              border = 'single',
+              -- max_width = 100,
+              draw = {
+                columns = {
+                  { 'label', gap = 1 },
+                  { 'kind_icon', 'kind', gap = 1 },
+                },
+              },
+            },
+          },
+        },
       },
     },
     config = function()
@@ -585,7 +604,7 @@ require('lazy').setup({
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
-        -- clangd = {},
+        clangd = {},
         -- gopls = {},
         -- pyright = {},
         -- rust_analyzer = {},
@@ -911,5 +930,9 @@ require('lazy').setup({
     },
   },
 })
+
+-- External files
+require 'remaps'
+
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
