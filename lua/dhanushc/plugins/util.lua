@@ -1,5 +1,32 @@
 return {
     {
+        'L3MON4D3/LuaSnip',
+        -- follow latest release.
+        version = 'v2.*', -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+        -- install jsregexp (optional!).
+        build = 'make install_jsregexp',
+        config = function()
+            local ls = require 'luasnip'
+
+            vim.keymap.set({ 'i', 's' }, '<c-k>', function()
+                if ls.expand_or_jumpable() then
+                    ls.expand_or_jump()
+                end
+            end, { silient = true })
+        end,
+    },
+    {
+        'luckasRanarison/tailwind-tools.nvim',
+        name = 'tailwind-tools',
+        build = ':UpdateRemotePlugins',
+        dependencies = {
+            'nvim-treesitter/nvim-treesitter',
+            'nvim-telescope/telescope.nvim', -- optional
+            'neovim/nvim-lspconfig', -- optional
+        },
+        opts = {}, -- your configuration
+    },
+    {
         'folke/todo-comments.nvim',
         dependencies = { 'nvim-lua/plenary.nvim' },
         opts = {
@@ -193,6 +220,10 @@ return {
         -- Enable `lukas-reineke/indent-blankline.nvim`
         -- See `:help ibl`
         main = 'ibl',
+        opts = {},
+    },
+    {
+        'dstein64/nvim-scrollview',
         opts = {},
     },
 }
