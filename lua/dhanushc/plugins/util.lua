@@ -12,7 +12,7 @@ return {
                 if ls.expand_or_jumpable() then
                     ls.expand_or_jump()
                 end
-            end, { silient = true })
+            end)
         end,
     },
     {
@@ -25,6 +25,15 @@ return {
             'neovim/nvim-lspconfig', -- optional
         },
         opts = {}, -- your configuration
+
+        -- config = function()
+        --     vim.api.nvim_create_autocmd('BufWritePre', {
+        --         pattern = { '*.js', '*.jsx', '*.ts', '*.tsx' },
+        --         callback = function()
+        --             vim.cmd.TailwindSort()
+        --         end,
+        --     })
+        -- end,
     },
     {
         'folke/todo-comments.nvim',

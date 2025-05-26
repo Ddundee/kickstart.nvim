@@ -45,6 +45,7 @@ return {
                 typescriptreact = { 'biome' },
                 json = { 'biome' },
                 css = { 'biome' },
+                c = { 'clang-format' },
             },
         },
     },
